@@ -1,3 +1,15 @@
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+fetch('music.mpeg')
+  .then(response => response.arrayBuffer())
+  .then(data => audioContext.decodeAudioData(data))
+  .then(buffer => {
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(audioContext.destination);
+    source.start();
+  });
+
+
 // Import the data to customize and insert them into page
 const fetchData = () => {
   fetch("customize.json")
