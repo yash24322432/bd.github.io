@@ -5,13 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Happy Birthday!!! :)</title>
+  <title> Happy Birthday!!! :) </title>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="style/style.css">
+  <audio id="birthday-audio" autoplay loop style="display: none">
+    <source src="media.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
 </head>
 
+
+
 <body>
+  <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("birthday-audio");
+
+    // Try to autoplay
+    const playAudio = () => {
+      audio.play().catch(() => {
+        // If blocked, ask for interaction
+        const btn = document.createElement("button");
+        btn.textContent = "Click to Play Music 🎵";
+        btn.style = "position: fixed; top: 20px; left: 20px; padding: 12px; z-index: 9999;";
+        document.body.appendChild(btn);
+
+        btn.addEventListener("click", () => {
+          audio.play();
+          btn.remove();
+        });
+      });
+    };
+
+    playAudio();
+  });
+</script>
+
   <div class="container">
     <div class="one">
       <h1 class="one">
